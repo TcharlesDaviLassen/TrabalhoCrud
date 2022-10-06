@@ -3,6 +3,7 @@ const UserModel = require('../models/User.js');
 const LogsController = require('../controllers/LogsController');
 const nodemailer = require('nodemailer');
 const md5 = require('md5');
+const console = require('console');
 
 class UsersController {
 
@@ -117,11 +118,20 @@ class UsersController {
 
     if (await this._checkIfEmailExists(user.email, id)) {
       throw new Error(`The user with mail address "${user.email}" already exists.`);
-    }
+    
+    } 
 
-    if (await this._checkIfEmailExists(user.name, id)) {
+    if (await this._checkIfNameExists(user.name, id)) {
       throw new Error(`The user with mail address "${user.name}" already exists.`);
-    }
+    
+    } 
+
+
+
+
+    // if (await this._checkIfEmailExists(user.name, id)) {
+    //   throw new Error(`The user with mail address "${user.name}" already exists.`);
+    // }
 
     return user;
   }
@@ -134,7 +144,13 @@ class UsersController {
     console.log(email_to);
     let email_subject = "Bem vindo a Biblio";
     let email_content = "Teste email content a biblioteca";
-    let email_html = " ";
+    let email_html ='<h1>Faalaaa Dev</h1><p>Muito bom ter voçê por aqui </P>';
+     // <img src="cid:igne_lab_rockedseat"/>
+      // attachments: [{
+      //   filename: 'igne_lab_rockedseat.png',
+      //   path: __dirname+'/igne_lab_rockedseat.png',
+      //   cid: 'igne_lab_rockedseat.png' //same cid value as in the html img src
+      // }],
 
     var transponder = nodemailer.createTransport(
       {
@@ -151,14 +167,7 @@ class UsersController {
       to: await email,
       subject: email_subject,
       text: email_content,
-      html: '<h1>Faalaaa Dev</h1>  ',
-
-      // <img src="cid:igne_lab_rockedseat"/>
-      // attachments: [{
-      //   filename: 'igne_lab_rockedseat.png',
-      //   path: __dirname+'/igne_lab_rockedseat.png',
-      //   cid: 'igne_lab_rockedseat.png' //same cid value as in the html img src
-      // }],
+      html: email_html,
     };
 
     transponder.sendMail(mailOptions, function (error, info) {
@@ -186,6 +195,24 @@ class UsersController {
 
     return count > 0;
   }
+  
+  _checkIfNameExists = async (name, id) => {
+    const where = {
+      name: name
+    };
+    console.log(where.id)
+
+    if (id) {
+      where.id = { [Op.ne]: id }; // WHERE id != id
+    }
+
+    const count = await UserModel.count({
+      where: where
+      
+    });
+    return count > 0;
+  }
+
 
 }
 

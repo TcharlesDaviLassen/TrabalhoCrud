@@ -1,7 +1,17 @@
 const { DataTypes, Model } = require('sequelize');
 const db = require('../db/indexDB');
 
-class User extends Model { };
+class User extends Model {
+
+  static async localizaUsuarios(name, password) {
+    return await User.findOne({
+      where: {
+        name: name,
+        password: password
+      }
+    });
+  }
+};
 
 User.init(
   {
