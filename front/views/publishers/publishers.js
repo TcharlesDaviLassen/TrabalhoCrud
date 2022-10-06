@@ -1,4 +1,4 @@
-const ENDPOINT = "http://177.44.248.60:3000";
+const ENDPOINT = "http://localhost:3000";
 
 const loadTable = () => {
     axios.get(`${ENDPOINT}/publishers`)

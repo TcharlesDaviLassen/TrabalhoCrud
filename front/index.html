@@ -28,18 +28,22 @@
                 </svg>
 
                 <h2> Login </h2>
-                <br>
-                <input id="name" class="name-input" type="text" placeholder="Name">
-                <br><br>
-                <input id="password" class="password-input" type="password" placeholder="Password">
-                <i class="bi bi-eye-slash" id="togglePassword" onclick="showpass()"></i>
+                <form>
 
-                <br><br>
-                <button class="login_btn" type="submit" name="action" value="Login" onclick="Login()">Login</button>
+                    <br>
 
-                <br><br>
-                <!-- <input class="buttonCasastrar " type="submit" value="Cadastrar" onclick="cadastrarUser()" /> -->
-                
+                    <input id="username"  name="name" class="name-input" type="text" placeholder="Name">
+                    <br><br>
+                    <input id="password"  name="password" class="password-input" type="password" placeholder="Password">
+                    <i class="bi bi-eye-slash" id="togglePassword" onclick="showpass()"></i>
+
+                    <br><br>
+                    <button class="login_btn" type="button" name="action" value="Login"onclick="return auths()">Login</button>
+
+                    <br><br>
+                    <!-- <input class="buttonCasastrar " type="submit" value="Cadastrar" onclick="cadastrarUser()" /> -->
+                </form>
+
                 <h1 class="biblio">CoderTeca</h1>
 
             </div>
