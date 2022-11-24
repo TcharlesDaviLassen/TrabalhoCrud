@@ -22,5 +22,5 @@ app.use((req, res, next) => {
 
 
 app.listen(PORT, () => {
-  console.log(`Server started atconst http://localhost:${PORT}/`);
+  console.log(`Server started atconst http://localhost:${PORT}`);
 });

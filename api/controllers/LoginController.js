@@ -2,7 +2,7 @@ const express = require('express');
 const User = require('../models/User');
 
 const cors = require('cors'); //Ajuda na segurança 
-const path = require('path');// Lê os pacotes do projeto
+// const path = require('path');// Lê os pacotes do projeto
 const md5 = require('md5');
 
 const app = express();

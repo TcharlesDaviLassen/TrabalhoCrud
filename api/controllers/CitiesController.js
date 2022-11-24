@@ -33,6 +33,7 @@ class CitiesController {
     }
 
     try {
+      
       const cities = await CityModel.findAll({
 
         include: [{
@@ -61,7 +62,9 @@ class CitiesController {
       const cities = await CityModel.create(data);
       // const loggs = await LogsModel.create()
       // res.json(loggs);
+      
       await LogsController.create({ action: "CITIES ADD", method: req.method });
+
       res.json(cities);
     } catch (error) {
       res.status(400).json({ error: error.message });
